@@ -1,0 +1,5 @@
+{
+  "body_html": "<h4 id=\"b18wiq\"><a href=\"#b18wiq\"></a>变量与赋值</h4><pre data-lang=\"powershell\"><code>name=&quot;DeepSea&quot;        # 定义变量\necho $name            #​ 使用该变量\necho ${name}          # 花括号是可选的，有时为了识别边界；加上是好习惯\n\n\n# 已定义的变量，可以被重新定义\nyour_name=&quot;tom&quot;\necho $your_name\nyour_name=&quot;alibaba&quot;\necho $your_name\n\n\n# unset 命令可以删除变量，不能删除只读变量\nunset variable_name</code></pre><p><br /></p><p>字符串</p><pre data-lang=\"powershell\"><code># 获取字符串长度\nstring=&quot;abcd&quot;\necho ${#string}                     # 输出 4\n\n# 提取子字符串\nstring=&quot;runoob is a great site&quot;\necho ${string:1:4}                  # 输出 unoo\n\n# 查找子字符串    \n# 查找字符 i 或 o 的位置(哪个字母先出现就计算哪个)\nstring=&quot;runoob is a great site&quot;\necho `expr index &quot;$string&quot; io`  # 输出 4</code></pre><p><br /></p><p>只读变量</p><pre data-lang=\"powershell\"><code># 使用 readonly 命令可以将变量定义为只读变量，只读变量的值不能被改变。\n\nmyUrl=&quot;FreshMilk&quot;\nreadonly myUrl\nmyUrl=&quot;FreshMilk&quot;</code></pre><p><br /></p>",
+  "slug": 769380,
+  "title": "变量"
+}

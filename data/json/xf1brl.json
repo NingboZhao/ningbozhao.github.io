@@ -1,0 +1,5 @@
+{
+  "body_html": "<p><br /></p><p><code>Shell</code> 是一种应用程序；</p><p><code>Shell script</code><span style=\"color: #333333;\"><span style=\"background-color: #FFFFFF;\"> 是为 Shell 编写的脚本程序。</span></span></p><p><br /></p><p><br /></p><p>Shell 有很多种类，最常使用 <code>Bash</code>，全称 <span style=\"color: #333333;\"><span style=\"background-color: #FFFFFF;\">Bourne Again Shell</span></span></p><pre data-lang=\"powershell\"><code>#!/bin/bash\n#!/bin/sh                #! 告诉系统用哪种 Shell</code></pre><p><br /></p><p><br /></p><p>拓展名并不影响 Shell 运行，你可以随意用 <code>.sh</code> <code>.php</code> 等来结尾</p><p><br /></p><p><br /></p><p>基础语句</p><pre><code>echo 输出文本</code></pre><p><br /></p>",
+  "slug": 769365,
+  "title": "Shell 基础"
+}
