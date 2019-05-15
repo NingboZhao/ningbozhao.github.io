@@ -1,0 +1,5 @@
+{
+  "body_html": "<p>在Python交互解释器中输入import this命令，可以看到描述Python设计原则的输出。</p><pre data-lang=\"python\"><code>import this</code></pre><p><br /></p><p>在Unix和Linux环境下，python源代码的顶端必须有一个注释来告诉系统Python解释器保存在哪里。例如：</p><pre data-lang=\"python\"><code>#!/usr/local/bin/python  \nprint 'hello world'</code></pre><p><br /></p><p>Python通过import来导入模块，如要重复导入则使用reload。</p><pre data-lang=\"python\"><code>import mysciprt  \nreload(myscript)</code></pre><p><br /></p><p><br /></p>",
+  "slug": 580859,
+  "title": "python 系统基础"
+}

@@ -1,0 +1,5 @@
+{
+  "body_html": "<h4 id=\"pdkwj\">概念</h4><p>先进行相关分析，判断有相关关系后，再进行回归分析。</p><p><br /></p><p>1）相关性系数 r</p><p>2）显著性水平 p</p><p>两者的关系为：当p&lt;0.05(或者0.01)的前提下，才可以参考r值，不能仅仅只看r值。</p><p><br /></p><p><br /></p><ul><li>在进行相关分析之前，建议先使用散点图进行查看。</li><li>判断是否存在相关关系：使用 P值 判断是否有相关关系。</li><li>判断正负相关：判断相关系数(r值) &gt;0 为正相关，&lt;0 为负相关。</li><li>判断紧密程度：相关系数一般0.7以上说明关系非常紧密；0.4~0.7之间说明关系紧密；0.2~0.4说明关系一般。</li><li>相关系数常用两类：Pearson 和 Spearman，一般使用 Pearson。</li></ul><p><br /></p><h4 id=\"Cj2l9\">Python 实现</h4><pre data-lang=\"python\"><code>import scipy.stats as stats \n\nr,p = stats.pearsonr(data.X,data.Y)\nprint('相关系数r为 = %6.3f，p值为 = %6.3f'%(r,p))</code></pre><p>相关系数r为 =  0.918，p值为 =  0.005</p><p>相关关系显著，且高度相关。</p><p><br /></p><p><br /></p><h4 id=\"vPnjX\">Excel 实现</h4><p><br /></p><p><br /></p><p><br /></p><p><br /></p><h4 id=\"zzznz\">实际举例</h4><p>投放车辆与订单之间的关系</p><p>天气情况与故障率之间的关系</p><p><br /></p><p><br /></p><p><br /></p><p><br /></p>",
+  "slug": 1628610,
+  "title": "相关分析"
+}

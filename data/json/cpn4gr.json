@@ -1,0 +1,5 @@
+{
+  "body_html": "<blockquote><p>001 阶乘</p></blockquote><p><br /></p><pre data-lang=\"python\"><code>#return the factorial of a given number#\n#返回阶乘#\n\ndef FirstFactorial(num): \n\n  factorial = 1\n  \n  for i in range(1, num+1):\n    # multiply each number between 1 and num  \n    # factorial = 1 * 1 = 1\n    # factorial = 1 * 2 = 2\n    # factorial = 2 * 3 = 6\n    # factorial = 6 * 4 = 24\n    # ...\n    factorial = factorial * i\n\n  return factorial\n\nprint FirstFactorial(4)</code></pre><p><br /></p>",
+  "slug": 580855,
+  "title": "python练习题"
+}
