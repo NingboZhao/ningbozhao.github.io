@@ -1,5 +1,0 @@
-{
-  "body_html": "<p>流失预警模型，即根据客户的多维特征，判断系统内的客户有多大概率流失，根据流失概率分群，针对潜在流失客户群体制定针对性的挽回营销策略。</p><p><br /></p><p>流程预警模型的大致流程如下：</p><p><br /></p><p><img alt=\"image.png\" title=\"image.png\" src=\"https://cdn.nlark.com/yuque/0/2019/png/85998/1556287700098-a26c7542-4687-46ff-91a8-9184b2b90a3c.png#align=left&amp;display=inline&amp;height=321&amp;name=image.png&amp;originHeight=383&amp;originWidth=602&amp;size=69167&amp;status=done&amp;width=504\" style=\"max-width: 600px; width: 504px;\" /></p><p><br /></p><ol><li>输入客户原始数据，提取关键特征，如性别、年龄、收入、最近消费行为、回流率等；</li><li>进行数据加工，字符型数据转化为数值型数据以供模型计算，对于缺失值采用插值或重新赋值策略，对于异常值采用插值或剔除策略；</li><li>将符合格式规范的数据输入到模型中，计算出流失概率，并根据流失概率输出为相应的标签。</li></ol><p>一般的，根据流失概率分布，可输出为以下四个标签值：</p><ul><li><strong>正常</strong>（流失概率0~0.2），表示流失的概率基本很小，可忽略不计；</li><li><strong>轻度</strong>（流失概率0.2~0.5），表示有潜在流失风险，需要重点关注；</li><li><strong>严重</strong>（流失概率0.5~0.8），表示有明显的流失倾向，需要重点维系，必要时可以有主动触达；</li><li><strong>非常严重</strong>（0.8~1.0），表示有非常严重的流失倾向，需要主动与客户以EDM或电话等形式发生互动，及时挽回。</li></ul>",
-  "slug": 1601826,
-  "title": "用户模型：预警流失模型"
-}

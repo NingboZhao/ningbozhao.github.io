@@ -1,5 +1,0 @@
-{
-  "body_html": "<p><br /></p><pre data-lang=\"sql\"><code>当前日期\nselect DATE_SUB(curdate(),INTERVAL 0 DAY) \n\n明天\nselect DATE_SUB(curdate(),INTERVAL -1 DAY)\n\n昨天\nselect DATE_SUB(curdate(),INTERVAL 1 DAY)\n\n前一个小时\nselect date_sub(now(), interval 1 hour)\n\n后一个小时\nselect date_sub(now(), interval -1 hour)\n\n前30分钟\nselect date_add(now(),interval -30 minute)\n\n后30分钟\nselect date_add(now(),interval 30 minute)</code></pre><p><br /></p>",
-  "slug": 1087993,
-  "title": "MySQL 时间函数"
-}
