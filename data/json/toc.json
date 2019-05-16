@@ -10,31 +10,6 @@
     "depth": 1
   },
   {
-    "title": "思维训练",
-    "slug": "#",
-    "depth": 1
-  },
-  {
-    "title": "金字塔原理",
-    "slug": "as0k61",
-    "depth": 2
-  },
-  {
-    "title": "结构化思维",
-    "slug": "giumiv",
-    "depth": 2
-  },
-  {
-    "title": "迭代：最好是更好的敌人",
-    "slug": "mcr2va",
-    "depth": 2
-  },
-  {
-    "title": "长远",
-    "slug": "wqnzl8",
-    "depth": 2
-  },
-  {
     "title": "代码语言",
     "slug": "#",
     "depth": 1
@@ -45,18 +20,23 @@
     "depth": 2
   },
   {
+    "title": "Python 对象类型",
+    "slug": "zzht9k",
+    "depth": 3
+  },
+  {
+    "title": "Pandas Cheat Sheet",
+    "slug": "beirz1",
+    "depth": 3
+  },
+  {
     "title": "Pandas 基础操作",
     "slug": "alx2au",
     "depth": 3
   },
   {
-    "title": "pandas",
+    "title": "Pandas 包",
     "slug": "qw5emk",
-    "depth": 3
-  },
-  {
-    "title": "Python对象类型",
-    "slug": "zzht9k",
     "depth": 3
   },
   {
@@ -65,7 +45,12 @@
     "depth": 3
   },
   {
-    "title": "model xlrd/xlwt",
+    "title": "def( )",
+    "slug": "tziru9",
+    "depth": 3
+  },
+  {
+    "title": "xlrd/xlwt",
     "slug": "gdzyhy",
     "depth": 3
   },
@@ -75,49 +60,29 @@
     "depth": 3
   },
   {
-    "title": "matplotlib不能运行",
-    "slug": "gvm395",
-    "depth": 3
-  },
-  {
-    "title": "python 绘制图像",
-    "slug": "zccldu",
-    "depth": 3
-  },
-  {
-    "title": "Pandas速查手册",
-    "slug": "beirz1",
-    "depth": 3
-  },
-  {
-    "title": "def( )",
-    "slug": "tziru9",
-    "depth": 3
-  },
-  {
-    "title": "Python操作MySQL数据库的三种方法",
-    "slug": "of9c9b",
-    "depth": 3
-  },
-  {
-    "title": "python操作excel文件",
+    "title": "操作 Excel 文件",
     "slug": "qk7vbl",
     "depth": 3
   },
   {
-    "title": "练习0006 最重要词频",
-    "slug": "tgg9mp",
+    "title": "Python 练习题",
+    "slug": "#",
     "depth": 3
+  },
+  {
+    "title": "练习0001 阶乘",
+    "slug": "cpn4gr",
+    "depth": 4
   },
   {
     "title": "练习0004 统计词频",
     "slug": "ua36m7",
-    "depth": 3
+    "depth": 4
   },
   {
-    "title": "python练习题",
-    "slug": "cpn4gr",
-    "depth": 3
+    "title": "练习0006 最重要词频",
+    "slug": "tgg9mp",
+    "depth": 4
   },
   {
     "title": "Shell",
@@ -140,13 +105,8 @@
     "depth": 3
   },
   {
-    "title": "Hive sql 语法详解",
+    "title": "Hive SQL",
     "slug": "lt9wb8",
-    "depth": 3
-  },
-  {
-    "title": "RFM 模型",
-    "slug": "lye7t7",
     "depth": 3
   },
   {
@@ -155,53 +115,48 @@
     "depth": 2
   },
   {
+    "title": "MySQL 系统操作函数",
+    "slug": "rk3srf",
+    "depth": 3
+  },
+  {
     "title": "MySQL 时间函数",
     "slug": "xkg362",
     "depth": 3
   },
   {
-    "title": "like效率提升",
-    "slug": "zabgl5",
-    "depth": 3
-  },
-  {
-    "title": "mysql系统操作",
-    "slug": "rk3srf",
-    "depth": 3
-  },
-  {
-    "title": "mysql in&exist",
-    "slug": "tq1ap4",
-    "depth": 3
-  },
-  {
-    "title": "mysql空间数据类型",
-    "slug": "hyh6c7",
-    "depth": 3
-  },
-  {
-    "title": "sql geo",
-    "slug": "eu47hz",
-    "depth": 3
-  },
-  {
-    "title": "正则表达式",
-    "slug": "kdokkb",
-    "depth": 3
-  },
-  {
-    "title": "mysql字符串函数",
-    "slug": "snfueg",
-    "depth": 3
-  },
-  {
-    "title": "MySQL空间数据库",
+    "title": "MySQL 空间数据",
     "slug": "qoxamg",
     "depth": 3
   },
   {
-    "title": "mysql时间日期函数",
-    "slug": "yko66c",
+    "title": "MySQL 空间数据类型",
+    "slug": "hyh6c7",
+    "depth": 3
+  },
+  {
+    "title": "MySQL 点面包含",
+    "slug": "eu47hz",
+    "depth": 3
+  },
+  {
+    "title": "MySQL 字符串函数",
+    "slug": "snfueg",
+    "depth": 3
+  },
+  {
+    "title": "MySQL 高级函数",
+    "slug": "fhr1ys",
+    "depth": 3
+  },
+  {
+    "title": "MySQL In&Exist",
+    "slug": "tq1ap4",
+    "depth": 3
+  },
+  {
+    "title": "LIKE 效率提升",
+    "slug": "zabgl5",
     "depth": 3
   },
   {
@@ -210,18 +165,18 @@
     "depth": 3
   },
   {
-    "title": "用户变量 set@",
-    "slug": "gfiugx",
-    "depth": 3
-  },
-  {
     "title": "嵌套查询",
     "slug": "qepn2x",
     "depth": 3
   },
   {
-    "title": "sql高级函数汇总",
-    "slug": "fhr1ys",
+    "title": "用户变量 set@",
+    "slug": "gfiugx",
+    "depth": 3
+  },
+  {
+    "title": "正则表达式",
+    "slug": "kdokkb",
     "depth": 3
   },
   {
@@ -255,6 +210,26 @@
     "depth": 3
   },
   {
+    "title": "思维训练",
+    "slug": "#",
+    "depth": 1
+  },
+  {
+    "title": "金字塔原理",
+    "slug": "as0k61",
+    "depth": 2
+  },
+  {
+    "title": "结构化思维",
+    "slug": "giumiv",
+    "depth": 2
+  },
+  {
+    "title": "迭代：最好是更好的敌人",
+    "slug": "mcr2va",
+    "depth": 2
+  },
+  {
     "title": "可视化",
     "slug": "#",
     "depth": 1
@@ -272,11 +247,6 @@
   {
     "title": "plot.ly",
     "slug": "pvqokp",
-    "depth": 2
-  },
-  {
-    "title": "最有价值的55个图表",
-    "slug": "rhdcvy",
     "depth": 2
   },
   {
@@ -350,17 +320,22 @@
     "depth": 2
   },
   {
-    "title": "聚类分析 cluster analysis",
+    "title": "对 2000 万用户数据进行聚类",
+    "slug": "wuh3ra",
+    "depth": 2
+  },
+  {
+    "title": "聚类分析",
     "slug": "ucifhg",
     "depth": 2
   },
   {
-    "title": "K-mean 算法",
+    "title": "K-means 算法",
     "slug": "vovhy4",
     "depth": 2
   },
   {
-    "title": "决策树 decision tree",
+    "title": "决策树",
     "slug": "blq9q8",
     "depth": 2
   },
@@ -383,6 +358,11 @@
     "title": "用户模型",
     "slug": "#",
     "depth": 2
+  },
+  {
+    "title": "RFM 模型",
+    "slug": "lye7t7",
+    "depth": 3
   },
   {
     "title": "用户模型：预警流失模型",
