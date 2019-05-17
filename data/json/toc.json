@@ -5,7 +5,7 @@
     "depth": 1
   },
   {
-    "title": "能力模型",
+    "title": "数据科学知识模型",
     "slug": "um6ey2",
     "depth": 1
   },
@@ -177,6 +177,11 @@
   {
     "title": "正则表达式",
     "slug": "kdokkb",
+    "depth": 3
+  },
+  {
+    "title": "Excel",
+    "slug": "tpyc44",
     "depth": 3
   },
   {
