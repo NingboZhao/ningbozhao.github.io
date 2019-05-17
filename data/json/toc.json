@@ -240,6 +240,11 @@
     "depth": 1
   },
   {
+    "title": "Awesome dataviz",
+    "slug": "wh0kqz",
+    "depth": 2
+  },
+  {
     "title": "Tableau",
     "slug": "or0omf",
     "depth": 2
@@ -412,6 +417,16 @@
   {
     "title": "分析方法选择",
     "slug": "qxocog",
+    "depth": 2
+  },
+  {
+    "title": "空间分析",
+    "slug": "#",
+    "depth": 1
+  },
+  {
+    "title": "Awesome geojson",
+    "slug": "nbmnub",
     "depth": 2
   },
   {
