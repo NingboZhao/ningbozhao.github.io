@@ -110,6 +110,11 @@
     "depth": 3
   },
   {
+    "title": "Hive 窗口函数",
+    "slug": "thb9xi",
+    "depth": 3
+  },
+  {
     "title": "SQL",
     "slug": "#",
     "depth": 2
@@ -162,6 +167,11 @@
   {
     "title": "SQL复杂语句",
     "slug": "qd4szu",
+    "depth": 3
+  },
+  {
+    "title": "LIMIT",
+    "slug": "nrgqwk",
     "depth": 3
   },
   {
@@ -300,6 +310,16 @@
     "depth": 2
   },
   {
+    "title": "线性回归 (一元和多元)",
+    "slug": "uq1xde",
+    "depth": 2
+  },
+  {
+    "title": "线性回归 (高维超平面)",
+    "slug": "vycplq",
+    "depth": 2
+  },
+  {
     "title": "异常值检验",
     "slug": "uwk2nn",
     "depth": 2
@@ -307,11 +327,6 @@
   {
     "title": "缺失值处理",
     "slug": "fklemg",
-    "depth": 2
-  },
-  {
-    "title": "回归分析",
-    "slug": "lk9kp6",
     "depth": 2
   },
   {
@@ -330,6 +345,16 @@
     "depth": 2
   },
   {
+    "title": "时间序列：统计学理论",
+    "slug": "fe0nng",
+    "depth": 2
+  },
+  {
+    "title": "时间序列：Holt-Winters 平滑模型",
+    "slug": "eudngt",
+    "depth": 2
+  },
+  {
     "title": "机器学习",
     "slug": "#",
     "depth": 1
@@ -340,7 +365,17 @@
     "depth": 2
   },
   {
-    "title": "对 2000 万用户数据进行聚类",
+    "title": "主成分分析 PCA",
+    "slug": "iivbnm",
+    "depth": 2
+  },
+  {
+    "title": "K-means 聚类：理论",
+    "slug": "mgbixg",
+    "depth": 2
+  },
+  {
+    "title": "K-means 聚类：Python 实现",
     "slug": "wuh3ra",
     "depth": 2
   },

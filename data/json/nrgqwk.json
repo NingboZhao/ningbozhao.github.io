@@ -1,0 +1,5 @@
+{
+  "body_html": "<p><br /></p><pre data-lang=\"sql\"><code>select _column,_column from _table [where Clause] [limit N][offset M]\n\nlimit N : 返回 N 条记录\noffset M : 跳过 M 条记录, 默认 M=0, 单独使用似乎不起作用\nlimit N,M : 相当于 limit M offset N , 从第 N 条记录开始, 返回 M 条记录\n\n\n\nSELECT * FROM table LIMIT 5,10; --检索记录行 6-15   \n\n--为了检索从某一个偏移量到记录集的结束所有的记录行，可以指定第二个参数为 -1：    \nmysql&gt; SELECT * FROM table LIMIT 95,-1; --检索记录行 96-last.   \n\n--如果只给定一个参数，它表示返回最大的记录行数目：    \nmysql&gt; SELECT * FROM table LIMIT 5; --检索前 5 个记录行   \n\n--换句话说，LIMIT n 等价于 LIMIT 0,n。</code></pre><p><br /></p>",
+  "slug": 1731202,
+  "title": "LIMIT"
+}
