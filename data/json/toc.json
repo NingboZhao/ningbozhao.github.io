@@ -65,6 +65,11 @@
     "depth": 3
   },
   {
+    "title": "json 文件格式",
+    "slug": "mn7fy0",
+    "depth": 3
+  },
+  {
     "title": "Python 练习题",
     "slug": "#",
     "depth": 3
@@ -215,13 +220,23 @@
     "depth": 2
   },
   {
-    "title": "185. 部门工资前三高的员工",
+    "title": "🔴 185. 部门工资前三高的员工",
     "slug": "plom9q",
     "depth": 3
   },
   {
-    "title": "601. 体育馆的人流量",
+    "title": "🔴 601. 体育馆的人流量",
     "slug": "gt540g",
+    "depth": 3
+  },
+  {
+    "title": "🔴 615. Average Salary: Departments VS Company",
+    "slug": "qdg69e",
+    "depth": 3
+  },
+  {
+    "title": "🔴 618. Students Report By Geography",
+    "slug": "igyx0r",
     "depth": 3
   },
   {
@@ -280,6 +295,11 @@
     "depth": 2
   },
   {
+    "title": "可视化注释",
+    "slug": "tl5mca",
+    "depth": 2
+  },
+  {
     "title": "优秀的可视化案例",
     "slug": "slkwk3",
     "depth": 2
@@ -295,9 +315,14 @@
     "depth": 2
   },
   {
-    "title": "数理统计",
+    "title": "概率论与数理统计",
     "slug": "#",
     "depth": 1
+  },
+  {
+    "title": "数学概念复习",
+    "slug": "elbgex",
+    "depth": 2
   },
   {
     "title": "统计学基础",
@@ -305,8 +330,108 @@
     "depth": 2
   },
   {
-    "title": "描述统计",
+    "title": "概率论：著名的三门问题",
+    "slug": "vid9sn",
+    "depth": 2
+  },
+  {
+    "title": "概率论",
+    "slug": "#",
+    "depth": 2
+  },
+  {
+    "title": "概率论与数理统计 大纲",
+    "slug": "wsepn4",
+    "depth": 3
+  },
+  {
+    "title": "1.0 样本空间和随机事件",
+    "slug": "hub6kp",
+    "depth": 3
+  },
+  {
+    "title": "1.1 概率",
+    "slug": "boybx5",
+    "depth": 3
+  },
+  {
+    "title": "2.1 离散型随机变量及分布",
+    "slug": "aretn4",
+    "depth": 3
+  },
+  {
+    "title": "2.2 连续型随机变量及分布",
+    "slug": "nneffy",
+    "depth": 3
+  },
+  {
+    "title": "期望",
+    "slug": "qgfstq",
+    "depth": 3
+  },
+  {
+    "title": "方差",
+    "slug": "ioxoom",
+    "depth": 3
+  },
+  {
+    "title": "协方差与相关系数",
+    "slug": "xsfgca",
+    "depth": 3
+  },
+  {
+    "title": "不相关与独立",
+    "slug": "oh8r6p",
+    "depth": 3
+  },
+  {
+    "title": "数理统计",
+    "slug": "#",
+    "depth": 2
+  },
+  {
+    "title": "数理统计 概论",
+    "slug": "hk2i5g",
+    "depth": 3
+  },
+  {
+    "title": "常用统计量",
+    "slug": "cwyel2",
+    "depth": 3
+  },
+  {
+    "title": "抽样分布 卡方 t F",
+    "slug": "omd0sa",
+    "depth": 3
+  },
+  {
+    "title": "极大似然估计",
+    "slug": "gxnav5",
+    "depth": 3
+  },
+  {
+    "title": "概括性度量",
     "slug": "iba12l",
+    "depth": 2
+  },
+  {
+    "title": "概率与概率分布",
+    "slug": "wp96i4",
+    "depth": 2
+  },
+  {
+    "title": "参数估计",
+    "slug": "bi0wqs",
+    "depth": 2
+  },
+  {
+    "title": "参数估计：样本容量的确定",
+    "slug": "ku26nh",
+    "depth": 2
+  },
+  {
+    "title": "假设检验",
+    "slug": "phdfsk",
     "depth": 2
   },
   {
@@ -370,13 +495,18 @@
     "depth": 2
   },
   {
-    "title": "K-means 聚类：理论",
+    "title": "K-means：理论",
     "slug": "mgbixg",
     "depth": 2
   },
   {
-    "title": "K-means 聚类：Python 实现",
+    "title": "K-means：Python 实现",
     "slug": "wuh3ra",
+    "depth": 2
+  },
+  {
+    "title": "K-means：如何确定 K",
+    "slug": "izkddp",
     "depth": 2
   },
   {
@@ -477,6 +607,16 @@
   {
     "title": "A/B test 样本选择",
     "slug": "ti959f",
+    "depth": 2
+  },
+  {
+    "title": "A/B test 计算样本量",
+    "slug": "sagyvh",
+    "depth": 2
+  },
+  {
+    "title": "A/B test 样本之间的网络效应",
+    "slug": "psshxm",
     "depth": 2
   },
   {

@@ -1,0 +1,5 @@
+{
+  "body_html": "<h3 id=\"Kw3BH\">方差：描述离散程度</h3><p>方差是反应<strong>随机变量</strong><strong>波动性</strong>的数据特征。</p><p>考察随机变量对于其均值的偏差，可以用<strong>绝对值</strong>，但是数学上绝对值不好用，因此采用的<strong>平方</strong>的形式。</p><p><br /></p><p>方差开方后，用 σ 表示，叫做 <code>标准差</code> 或 <code>均方差</code>。</p><p><br /></p><p>方差 or 标准差较小，说明随机变量较集中。</p><p><br /></p><h4 id=\"5kfQA\"><span>方差与期望的区别</span></h4><p>两个人去射箭，箭的位置分布如下：</p><p><img alt=\"image.png\" title=\"image.png\" src=\"https://cdn.nlark.com/yuque/0/2019/png/85998/1558854479431-18b29c00-1c88-4297-8250-1f11198a2f4a.png#align=left&amp;display=inline&amp;height=300&amp;name=image.png&amp;originHeight=600&amp;originWidth=800&amp;size=89729&amp;status=done&amp;width=400\" style=\"max-width: 600px; width: 400px;\" /></p><p>尽管两套落点的平均中心位置都在原点 (即期望相同），但两套落点的离散程度明显有区别。蓝色的点离散程度更小。可见，方差是独立于期望的另一个对分布的度量。两个分布，完全可能有相同的 <code>期望</code>，而方差不同，正如我们上面的箭靶。</p><p><br /></p><h4 id=\"qcyK1\">方差与标准差的区别</h4><p>区别在量纲上。标准差与随机变量，以及随机变量的期望是同量纲的。（这句没听懂）因此在现实生活中标准差用得更多。</p><p><br /></p><p><br /></p><p><br /></p><p><br /></p><p><br /></p><p><br /></p>",
+  "slug": 1776347,
+  "title": "方差"
+}

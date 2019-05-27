@@ -1,0 +1,5 @@
+{
+  "body_html": "<h3 id=\"jsBis\">连续性随机变量</h3><p>离散型随机变量的值是有限个，主要包括两点分布，二项分布，超几何分布等几种。</p><p><br /></p><p>连续型随机变量没有值，只有概率密度函数。因此，要判断是离散型还是连续型，看其是具有概率密度函数，还是具有随机变量的值。</p><p><br /></p><p>举例：</p><p>如果变量可以在<strong>某个区间内取任一实数</strong>，即变量的取值可以是连续的，这随机变量就称为<strong>连续型随机变量</strong>。</p><p><br /></p><p>比如：公共汽车每15分钟一班，某人在站台等车时间x是个随机变量，x的取值范围是[0,15)，它是一个区间。从理论上说在这个区间内可取任一实数3分钟、5分钟7毫秒、7√2分钟，在这十五分钟的时间轴上任取一点，都可能是等车的时间，因而称这随机变量是连续型随机变量。人的身高，也是<span>连续型随机变量</span></p><p><span><br /></span></p><p><span><br /></span></p><p><span><br /></span></p><p><span><br /></span></p><p><span>参考文献：</span></p><p><a href=\"https://www.shuxuele.com/data/random-variables-continuous.html\" target=\"_blank\">https://www.shuxuele.com/data/random-variables-continuous.html</a></p><p><br /></p>",
+  "slug": 1775158,
+  "title": "2.2 连续型随机变量及分布"
+}
