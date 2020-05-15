@@ -1,5 +1,0 @@
-{
-  "body_html": "<p>如果某个事件A发生的可能性受到另外一个事件B的影响，此时A发生的可能性叫做条件概率，记作P(A|B)。表明我们是在B条件已经发生的条件下考虑A发生的可能性，统计学中称为给定条件B下事件A的概率。</p><p><br /></p><p style=\"text-align: center;\"><img src=\"https://cdn.nlark.com/yuque/__latex/0b75a948e729c1248705622e2839a5c9.svg#card=math&amp;code=P%28A%20%7C%20B%29%3D%5Cfrac%7BP%28A%20%5Ccap%20B%29%7D%7BP%28B%29%7D&amp;height=48&amp;width=156\" style=\"max-width: 600px; width: 156px;\" /></p><p><br /></p><p>进而又得出了乘法公式：</p><p style=\"text-align: center;\"><img src=\"https://cdn.nlark.com/yuque/__latex/bd1483e47df2446602ce8047ee2d4b8e.svg#card=math&amp;code=P%28%5Cmathrm%7BA%7D%20%5Ccap%20%5Cmathrm%7BB%7D%29%3D%5Cmathrm%7BP%7D%28%5Cmathrm%7BB%7D%29%20%5Cmathrm%7BP%7D%28%5Cmathrm%7BA%7D%20%7C%20%5Cmathrm%7BB%7D%29&amp;height=24&amp;width=184\" style=\"max-width: 600px; width: 184px;\" /></p><p><br /></p><p><span style=\"color: #CDCBC6; background-color: #232425;\"><br /></span></p>",
-  "slug": 1782340,
-  "title": "条件概率(乘法公式)"
-}

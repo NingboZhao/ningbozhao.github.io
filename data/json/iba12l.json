@@ -1,5 +1,0 @@
-{
-  "body_html": "<h2 id=\"yZsv9\"><a href=\"#集中趋势\"></a>集中趋势</h2><h4 id=\"Sa28W\"><a href=\"#众数\"></a>众数</h4><blockquote><p>一组数据中，出现次数最多的变量值</p></blockquote><p>Excel <code>mode()</code></p><p><br /></p><h4 id=\"yCCJv\"><a href=\"#中位数\"></a>中位数</h4><blockquote><p>一组数据排序后，处于中间位置的变量值。奇数中间值，偶数中间两数平均值。</p></blockquote><p>Excel <code>median()</code></p><p><br /></p><h4 id=\"ubFpP\"><a href=\"#分位数：四分位数\"></a>分位数：四分位数</h4><blockquote><p>三点等分：下四分位数，中位数，上四分位数</p></blockquote><p>Excel <code>quartile(array,quart)</code></p><p>quart=0最小值    1第一个四分位数    2中位数    3第三个四分位数    4最大值</p><p><br /></p><p>简单平均数</p><p>加权平均数</p><p>算数平均数    Excel <code>average()</code></p><p>几何平均数    Excel <code>geomean()</code></p><p><br /></p><p>异众比率</p><p>四分位差</p><p>极差</p><p>平均差    Excel <code>avedev()</code></p><p>方差</p><p>标准差    Excel <code>stdev()</code></p><p><br /></p><p>离散系数</p><p><br /></p><p>偏态系数    Excel <code>skew()</code></p><p><br /></p><h2 id=\"5RheZ\">离散程度</h2><p><br /></p><h2 id=\"aJvGH\">偏态与峰态</h2>",
-  "slug": 583606,
-  "title": "概括性度量"
-}

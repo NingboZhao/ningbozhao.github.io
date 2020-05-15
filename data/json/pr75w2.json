@@ -1,5 +1,0 @@
-{
-  "body_html": "<p>Echarts ：<a href=\"https://ecomfe.github.io/echarts-doc/public/en/index.html\" target=\"_blank\">https://ecomfe.github.io/echarts-doc/public/en/index.html</a></p><p>Pyecharts：<a href=\"https://github.com/pyecharts/pyecharts\" target=\"_blank\">https://github.com/pyecharts/pyecharts</a></p><p><br /></p><p>Echarts 是百度开源的可视化框架，我们团队使用 Echarts 搭建了公司的数据平台。</p><p>Pyecharts 是一个 Python 包，可以非常方便地使用 Python 产出可交互图表，并导出为 html。</p><p><br /></p><p><br /></p>",
-  "slug": 1681082,
-  "title": "PyEcharts"
-}

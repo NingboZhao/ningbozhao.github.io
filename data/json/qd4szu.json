@@ -1,5 +1,0 @@
-{
-  "body_html": "<h3><a href=\"#重复数据中，查询时间最近的数据\"></a>重复数据中，查询时间最近的数据</h3><p>原始数据：</p><img src=\"https://lark-assets-prod.oss-cn-hangzhou.aliyuncs.com/2018/png/606ee4af-b209-452a-889c-d6293ec4f2b1.png#width=573\" style=\"max-width: 600px; width: 573px;\" /><p>目的：对于每个人，仅显示时间最新的那一条记录。</p><pre data-lang=\"sql\"><code>select * from record as a \nwhere not exists \n    (select null from record as b \n    where a.Name = b.Name \n    and a.CreateTime &lt; b.CreateTime)\n\n#或\nselect * from record as a \nwhere not exists \n    (select * from record as b \n    where a.Name = b.Name \n    and b.CreateTime &gt; a.CreateTime)</code></pre><p><br /></p><p>这个问题的关键难点在于，既要去除重复，又要显示多个列。这样一来distinct就无效了，groupby又无效了。</p><p><strong>整条SQL语句的意思可以描述为，查询表a的数据，当名字相同且存在时间更加新的，则不要这条(一直排除到时间是最新的)。exists运算符，只关注子SQL有没有结果集返回，因此在exists里select * 与 select null意义一样，也就是说，如果名字相等，且有创建时间比较新的，则不要这条，直到最新的。</strong></p><p><br /></p><p>关联子查询只是此问题的其中一个解法，更多的解决方案在这个地址有：http://www.cnblogs.com/kissdodog/p/3365789.html</p><p><br /></p><p><br /></p>",
-  "slug": 583373,
-  "title": "SQL复杂语句"
-}

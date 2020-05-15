@@ -1,0 +1,272 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- common.css -->
+      <style>* {-webkit-tap-highlight-color: rgba(0,0,0,0);}html {-webkit-text-size-adjust: none;}body {font-family: -apple-system, Helvetica, Arial, sans-serif;margin: 0;padding: 20px;color: #333;word-wrap: break-word;}h1, h2, h3, h4, h5, h6 {line-height: 1.1;}img {max-width: 100% !important;height: auto;}blockquote {margin: 0;padding: 0 15px;color: #777;border-left: 4px solid #ddd;}hr {background-color: #ddd;border: 0;height: 1px;margin: 15px 0;}code {font-family: Menlo, Consolas, 'Ubuntu Mono', Monaco, 'source-code-pro', monospace;line-height: 1.4;margin: 0;padding: 0.2em 0;font-size: 90%;background-color: rgba(0,0,0,0.04);border-radius: 3px;}pre > code {margin: 0;padding: 0;font-size: 100%;word-break: normal;background: transparent;border: 0;}ol {list-style-type: decimal;}ol ol, ul ol {list-style-type: lower-latin;}ol ol ol, ul ol ol, ul ul ol, ol ul ol {list-style-type: lower-roman;}table {border-spacing: 0;border-collapse: collapse;margin-top: 0;margin-bottom: 16px;}table th {font-weight: bold;}table th, table td {padding: 6px 13px;border: 1px solid #ddd;}table tr {border-top: 1px solid #ccc;}table tr:nth-child(even) {background-color: #f8f8f8;}input[type="checkbox"] {cursor: default;margin-right: 0.5em;font-size: 13px;}.task-list-item {list-style-type: none;}.task-list-item+.task-list-item {margin-top: 3px;}.task-list-item input {float: left;margin: 0.3em 1em 0.25em -1.6em;vertical-align: middle;}#tag-field {margin: 8px 2px 10px;}#tag-field .tag {display: inline-block;background: #cadff3;border-radius: 4px;padding: 1px 8px;color: black;font-size: 12px;margin-right: 10px;line-height: 1.4;}</style>
+      <!-- ace-static.css -->
+      <style>.ace_static_highlight {white-space: pre-wrap;}.ace_static_highlight .ace_gutter {width: 2em;text-align: right;padding: 0 3px 0 0;margin-right: 3px;}.ace_static_highlight.ace_show_gutter > .ace_line {padding-left: 2.6em;}.ace_static_highlight .ace_line {position: relative;}.ace_static_highlight .ace_gutter-cell {-moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;top: 0;bottom: 0;left: 0;position: absolute;}.ace_static_highlight .ace_gutter-cell:before {content: counter(ace_line, decimal);counter-increment: ace_line;}.ace_static_highlight {counter-reset: ace_line;}</style>
+      <style>.ace-monokai .ace_gutter {background: #2F3129;color: #8F908A}.ace-monokai .ace_print-margin {width: 1px;background: #555651}.ace-monokai {background-color: #272822;color: #F8F8F2}.ace-monokai .ace_cursor {color: #F8F8F0}.ace-monokai .ace_marker-layer .ace_selection {background: #49483E}.ace-monokai.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px #272822;}.ace-monokai .ace_marker-layer .ace_step {background: rgb(102, 82, 0)}.ace-monokai .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid #49483E}.ace-monokai .ace_marker-layer .ace_active-line {background: #202020}.ace-monokai .ace_gutter-active-line {background-color: #272727}.ace-monokai .ace_marker-layer .ace_selected-word {border: 1px solid #49483E}.ace-monokai .ace_invisible {color: #52524d}.ace-monokai .ace_entity.ace_name.ace_tag,.ace-monokai .ace_keyword,.ace-monokai .ace_meta.ace_tag,.ace-monokai .ace_storage {color: #F92672}.ace-monokai .ace_punctuation,.ace-monokai .ace_punctuation.ace_tag {color: #fff}.ace-monokai .ace_constant.ace_character,.ace-monokai .ace_constant.ace_language,.ace-monokai .ace_constant.ace_numeric,.ace-monokai .ace_constant.ace_other {color: #AE81FF}.ace-monokai .ace_invalid {color: #F8F8F0;background-color: #F92672}.ace-monokai .ace_invalid.ace_deprecated {color: #F8F8F0;background-color: #AE81FF}.ace-monokai .ace_support.ace_constant,.ace-monokai .ace_support.ace_function {color: #66D9EF}.ace-monokai .ace_fold {background-color: #A6E22E;border-color: #F8F8F2}.ace-monokai .ace_storage.ace_type,.ace-monokai .ace_support.ace_class,.ace-monokai .ace_support.ace_type {font-style: italic;color: #66D9EF}.ace-monokai .ace_entity.ace_name.ace_function,.ace-monokai .ace_entity.ace_other,.ace-monokai .ace_entity.ace_other.ace_attribute-name,.ace-monokai .ace_variable {color: #A6E22E}.ace-monokai .ace_variable.ace_parameter {font-style: italic;color: #FD971F}.ace-monokai .ace_string {color: #E6DB74}.ace-monokai .ace_comment {color: #75715E}.ace-monokai .ace_indent-guide {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y}</style>
+      <!-- export.css -->
+      <style>
+        body{margin:0 auto;max-width:800px;line-height:1.4}
+        #nav{margin:5px 0 10px;font-size:15px}
+        #titlearea{border-bottom:1px solid #ccc;font-size:17px;padding:10px 0;}
+        #contentarea{font-size:15px;margin:16px 0}
+        .cell{outline:0;min-height:20px;margin:5px 0;padding:5px 0;}
+        .code-cell{font-family:Menlo,Consolas,'Ubuntu Mono',Monaco,'source-code-pro',monospace;font-size:12px;}
+        .latex-cell{white-space:pre-wrap;}
+      </style>
+      <!-- User CSS -->
+      <style> #popup{position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;text-align: center;display: none;z-index: 9999999;}#popup .bg{background-color: rgba(0,0,0,0.5);width: 100%;height: 100%;}@media \0screen\,screen\9 {#popup .bg{background-color:#000000;filter:Alpha(opacity=50);position:static;}#popup .bg img{position: relative;}}#popup img{margin-top: 2%;max-height: 90%;}table th, table td {padding: 6px 13px;border: 0px solid #ddd;}table {display: table;border-collapse: separate;border-spacing: 2px;}.ace-monokai {border-radius: 5px;padding: 10px;;background: #282722;;}h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {font-family: "Optima","Songti SC",STSong,KaiTi, STKaiTi, 华文楷体,"Apercu","GT Eesti Text", "Source Sans Pro","Merriweather",Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, 'source-han-serif-sc', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif TC', 'Source Han Serif TW', 'Source Han Serif', 'Songti SC', 'Microsoft YaHei', serif;font-weight: 700;line-height: 1.1;color: inherit;}h5, h6, .h5, .h6 {display: flex;font-family: ibm-mono-medium,Menlo,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier,monospace;font-weight: 500;font-style: normal;font-size: 14px;line-height: 18px;color: #a3aab8;letter-spacing: .04em;text-transform: uppercase;}img {border: 0;max-height: 450px;margin-left: auto;margin-right: auto;display: block;}a {border-bottom: 1px solid rgba(55, 53, 47, 0.16);flex: 1 1 0px;min-width: 1px;padding-top: 3px;padding-bottom: 3px;padding-left: 2px;font-weight: 500;line-height: 2;color:black;text-decoration: none;}body {font-family: "Optima","Noto Serif CJK SC","Songti SC",STSong,KaiTi, STKaiTi, 华文楷体,"Apercu","GT Eesti Text", "Source Sans Pro","Merriweather",Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, 'source-han-serif-sc', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif TC', 'Source Han Serif TW', 'Source Han Serif', 'Songti SC', 'Microsoft YaHei', serif;}body {margin: 0 auto;max-width: 650px;line-height: 1.4;}#titlearea {border-bottom: 0px solid #ccc;font-size: 0px;padding: 10px 0;}#nav {margin: 5px 0 10px;font-size: 0px;}.text-cell {font-size: 15px;}.code-cell {font-size: 12px;border-radius: 5px;padding: 10px;;background: #282722;;}.markdown-cell {font-size: 15px;}.latex-cell {font-size: 15px;}</style>
+    </head>
+    <body>
+      <div id="nav"><div>Next: <a href='Julia 工程实践速记.html'>Julia 工程实践速记</a>, Previous: <a href='自然——Ant Design 设计价值观 · 语雀.html'>自然——Ant Design 设计价值观 · 语雀</a>, Up: <a href='index.html'>Index</a></div></div>
+      <div id="titlearea">
+        <h2>JMP Pro的重要功能</h2>
+      </div>
+      <div id="contentarea"><div class="cell markdown-cell"><p><img src="resources/2DAF772BC28C5B55B1C59A2D6E53676B.jpg" alt="JMP Pro gradation"></p>
+<p>JMP Pro提供一系列先进算法，可帮助您构建、评估和管理预测模型。</p>
+<h3></h3>
+<h3>预测建模和交叉验证</h3>
+<p>任何人都能对上一年的业绩进行出色的整理和说明，但是，没有适合的工具和最先进的技术，就会大大增加通过建模预测新客户、新流程或新风险的难度。JMP Pro中包含一系列丰富的算法，可利用现有数据构建高效的模型。要进行预测建模，最实用的一些技术是<code>决策树、Bootstrap森林法、朴素贝叶斯和神经网络</code>。</p>
+<p>JMP Pro的“分割”平台采用先进的方法自动执行树构建进程。此平台也适用于K最近邻（K-NN）模型。</p>
+<p>“自助法森林”采用随机森林技术，能够利用数据的随机子集生成众多决策树，并计算这些决策树中每个因子所造成影响的平均值。提升决策树技术可以构建很多简单树，从而将一棵树的残差变异重复拟合至另一棵树。</p>
+<p>“朴素贝叶斯”平台采用Bayes定理原则，可用于预测分类响应。此平台甚至允许预测数据中未显示的预测变量的组合。</p>
+<p>借助高级“神经”平台，您可以利用所选的三种激活函数构建一层或两层神经网络，此外，该平台还提供采用梯度提升功能的自动模型结构。此平台能够自动处理缺失值和连续X变换，可达到事半功倍的效果，并且包括可靠的拟合选项。</p>
+<p>JMP Pro的所有平台均采用交叉验证方法，既能实现模型验证，又能将未来数据全面纳入其中。为了更有效的进行预测建模，您需要用有效的方法进行模型的验证，而复杂的模型很容易导致过拟合。因此对于大型的复杂模型，我们总是需要进行交叉验证。JMP Pro提供“数据划分”或“保留”选项来执行该操作。交叉验证技术能够帮助您构建更好的模型，从而使得未来数据 - 关于新客户、新流程或者新的风险 - 也可以在这些模型上得到很好的应用，从而帮助您做出由数据驱动的未来决策。</p>
+<p>一直以来，我们都通过将数据集划分为训练集、测试集和验证集来避免过度拟合，以确保构建的模型不仅仅依赖于用来建模的样本数据。JMP Pro一般会通过使用“验证列”来实现交叉验证。无论要达到何种目的，您都可以通过设置“验证列”将原始数据划分成不同的数据集（可采用随机抽样或分层随机抽样）。</p>
+<p>训练集用于构建模型，验证集用于帮助用户在建模过程中针对模型的复杂程度做出选择，而完全不参与建模过程的测试集，主要用于评估不同建模方法的好坏。对于数据量比较小的数据集，还会提供K重交叉验证。此过程可帮助您构建有效推广至新数据的模型。</p>
+<p>需要注意的是，观-测数据的作用也仅限于此。要真正了解因果关系，多数情况下您可能需要采用实验设计（DOE）。JMP为您提供使用简便、世界领先的最优DOE工具。</p>
+<h3>模型比较</h3>
+<p>在实际应用中，某些模型在一些特定的情况下拟合性较好，但在其他情况下则较差。JMP Pro提供多种拟合方法，我们需要找出在特定的情况下哪种方法的拟合效果最好。一般构建模型的典型思路是尝试多种不同的模型：或简单或复杂，包含或不-包含特定的因子/预测变量，采用不同的建模方法，甚至是多个模型的平均（组合模型）。</p>
+<p>所有的这些模型都有相同的拟合指标用来判定模型的好坏：R2、误分类率、ROC曲线、AUC、提升曲线等等。</p>
+<p>使用JMP Pro的模型比较，您可以对不同拟合模型生成的所有预-测列进行比较，并选取拟合优度、简约性、交叉验证性组合最佳的模型。JMP Pro会自动给出最佳的结果。同时，您还可以借助模型刻画器动态交互地查看每个模型选取的关键因子有哪些。借助JMP Pro的模型比较功能，用户可以方便地对多个模型同时进行比较，还能根据需要进行模型平均。</p>
+<h3>模型库和生成评分代码</h3>
+<p>管理模型并不是一件苦差事 – JMP Pro中的“模型库”可在处理多个模型的同时组织您的工作。此中央资源库可采用C、SQL、SAS或其他语言存储、刻画、比较和选择性地部署JMP Pro模型。</p>
+<p>现在，当构建多个模型时，您的数据表将不再因包含执行模型比较所需的大量额外预测公式列而负担过重。可将评分代码保存至“公式库”并应用至新数据。结果为中央建模中心，让您可轻松访问您的模型并部署至其他系统。</p>
+<h3>连接SAS®的丰富资源</h3>
+<p>作为SAS预测分析和数据挖掘解决方案之一，JMP Pro能够轻松与SAS进行连接，扩展其分析功能，依托并借助强大的SAS分析与数据集成能力。无论是否与SAS相连接，JMP Pro均可输出SAS代码，使用新数据对JMP构建的模型进行快速、轻松的评分。</p>
+<h3>新型建模</h3>
+<p>广义回归是站在模型改进的角度而提出的一系列新的建模方法。该方法通过正则化即引入惩罚项进行回归来进行模型的拟合与估计。</p>
+<p>当预测变量之间存在强相关或者预测变量数大于观测个数时，标准的回归方法基本是行不通的。而预测变量之间存在多重共线性（实际情况常常如此)，逐步回归法或者其他标准的回归方法也得不到令人满意的结果。这些模型往往会出现过拟合，在新数据的应用上表现很差。但是在建模之前如何确定该剔除哪些变量？--或者更糟的情况是，你要花费多少时间来手动筛选变量用以构建最终的模型？</p>
+<p>拟合模型中的“广义回归”在进行回归时，基本会包含所有的变量和信息。广义回归过程是一个完整的建模架构搭建过程，它可以帮您进行变量选择、模型诊断，再到LS均值比较、逆预测乃至整个模型刻画。这都是JMP Pro所特有的功能。</p>
+<p>广义回归特性中所涉及到正则化方法包括岭、套索、自适应套索、弹性网络和自适应弹性网络，能够帮助您更好的识别对Y有重要影响的X变量。该方法与"拟合模型"平台下的其他建模方法一样简单易用--先确定响应变量，构建模型效应，再选择合适的估计方法和交叉验证方法。JMP可自动拟合您的数据，在合适时选择变量，并构建可推广到新数据的预测模型。您还可以使用向前逐步回归技术，使用最大似然法执行分位数回归或简单拟合。</p>
+<p>最后需要指出的是，广义分布还为响应变量提供了多种分布选项，因此当响应变量为计数数据、含有大量离群点的数据或偏态数据时，都能够进行很好的模型拟合。与JMP Pro中的所有高级建模平台相同，您可选择交叉验证技术。</p>
+<h3>可靠性框图</h3>
+<p>您会经常遇到这种需求：要分析一个较复杂分析系统（例如拥有多个硬盘的RAID存储阵列，或者配备四个引擎的飞机）的可靠性。JMP为您提供很多用于分析上述系统中单独部分的可靠性的工具。而借助JMP Pro，您可以利用单一部件的可靠性，构建一个多部件的复杂系统并分析整个系统的可靠性。通过“可靠性框图”，您可以轻松设计并弥补系统弱点，获得更详实的系统信息，从而避免系统在将来发生故障。</p>
+<p>借助此平台，您可通过查看不同设计和比较多个系统的设计图，轻松执行假设分析。您还可以确定最佳位置来添加冗余，并降低系统故障的可能性。</p>
+<h3>可修复系统模拟</h3>
+<p>某些系统或复杂系统的部件离线时间过长会造成巨大损失。要保持这些系统的完整性，您需要合理计划系统部件的修复或通过在系统不可用期间完成额外修复，最大化出现意外停机时能够实现的收益。借助JMP Pro，您可使用“可修复系统模拟”确定系统不可用的时长，并回答以下关键问题：在指定时间内将发生的修复事件数和每一修复事件的成本。</p>
+<h3>覆盖矩阵</h3>
+<p>覆盖矩阵用于检测因子交互作用可能导致故障且每次实验运行的成本十分高昂的应用。因此，您需要设计一个试验，在降低成本并缩短时间的同时，最大概率找到缺陷所在，实现利润最大化。覆盖矩阵可以帮助您实现上述目标。您可以使用JMP Pro进行实验设计，对确定性系统进行检测，并按照特定交互作用顺序覆盖所有可能的因子组合。</p>
+<p>当出现不合理的因子组合时，您可以使用交互式的“无效组合”过滤器，将这些因子设置组合从设计中自动排除。</p>
+<p>运用JMP Pro进行覆盖阵列设计的一个显著优势在于，JMP Pro不仅仅覆盖阵列设计的工具，他更是一个强大的统计分析工具。您可以在JMP Pro中进行各种统计分析。举例来说，目前还没有任何的覆盖数组设计的软件能像JMP Pro一样可以使用广义回归进行数据分析。这是JMP Pro相比其他覆盖数组设计工具的巨大优势。</p>
+<p>严格地说，JMP Pro不仅仅是设计工具；它还可以导入任何软件生成的覆盖阵列设计，对其进一步优化并分析结果。您可以自行设计阵列，不必依靠他人为您构建实验。JMP Pro的覆盖阵列，让测试变得更加智能。</p>
+<h3>混合模型</h3>
+<p>混合模型在分析中包含固定效应和随机效应。您可以利用这些模型分析同时涉及时间和空间的数据。例如，在进行药物试验时，往往存在多个受试者进行多次测量的情况，这时您可以使用混合模型进行效应的估计。另外在制药、生产或者化工行业经常会用到的交叉设计也适用于该情况。</p>
+<p>JMP Pro提供混合模型的拟合，您可以指定模型中的固定效应，随机效应以及重复效应；指定测试的多个变量间的关联效应，设定对象和连续性效应；以上所有操作均可在直观的界面中拖放完成。</p>
+<p>另外，对于多种情况下的数据相关您可以估计相应地协方差参数。比如我们对受试对象进行测量时，如果受试对象可以分为不同的群体（比如来自同一个家庭），则来自同一个群体的受试对象的数据存在相关性；又譬如对同一个受试对象进行多次测量时，则该受试对象的多次观察数据之间可能存在相关性或者存在不同的变异。</p>
+<p>如果存在空间上的相关性，则用JMP Pro构建混合模型时，您可以很简单的通过可视化的方式来决定您的数据到底适合什么样的空间协方差结构。</p>
+<h3>提升模型</h3>
+<p>您也许只想给那些对营销活动做出积极响应的个人发送产品和服务信息，以便在有限的市场营销预算下获取最大的收益。然而，这项任务可能看起来很艰巨，尤其当您面临大量数据集以及包含众多消费者行为和背景信息相关变量时更是如此。提升模型具有以下作用。提升模型又称为增量建模、真提升建模或网络建模，用于帮助优化市场营销决策、确定个性化医学协议，或者在更广泛的方面来说，可用于识别可能对某项活动作出回应的个人特征。</p>
+<p>您可借助JMP Pro中的提升模型进行这些预测。JMP Pro对那些发现拆分的分割模型进行拟合，以实现处理差异的最大化。从而帮助您识别可能对某项活动作出积极回应的特定人群；进而制定有效的针对性决策，合理规划资源，给此特定消费群体带来最强的冲击。</p>
+<h3>高级计算统计</h3>
+<p>JMP Pro中的列联表分析提供了精确统计检验，单因子方差分析平台则提供了精确非参数统计检验。此外，JMP Pro还包含可用于大多数JMP报表的Bootstrapping统计的一般方法。</p>
+<p>Bootstrapping模拟了统计量的近似分布。JMP Pro是唯一一款无需编写任何代码，即可对统计量进行自助抽样的统计软件包。一键式bootstrapping意味着，只需点击一下即可对JMP报告中的任何统计量进行自助抽样。</p>
+<p>当您面对的数据不符合教科书中对分布的假设，或者某些统计方法根本不存在分布假设，进而无法估计统计量的分布参数时，BootStrap方法就可以派上用场了。比如，可用该方法对非线性模型中用来预测的系数进行bootstrapping的估计或者对分位数进行置信区间估计。您还可以用Bootstrapping估计预测模型的不确定性。Bootstrapping使您可以在具有较少假设的估计中评估置信度 – JMP Pro中的一键式Bootstrapping使这项工作变得十分轻松。</p>
+<h3>分享和交流结果</h3>
+<p><a href="https://www.jmp.com/zh_cn/success/dow-chemical.html"><img src="resources/17D607AD5131B749AABBB7E2319CE1F2.jpg" alt="DOW Flags"></a></p>
+<p>陶氏化学公司已在工作中采用JMP Pro，因为决策者需要一款能够深入探索大量数据，并尽可能多地从数据中高效挖掘信息的绝佳工具。</p>
+<p><a href="https://www.jmp.com/zh_cn/success/dow-chemical.html">了解该案例</a></p>
+<p>JMP始终以发现为研究重点，坚持不懈地寻找在组织范围内传达这些发现成果的最佳方法。JMP Pro涵盖了JMP的所有可视化和交互式功能，能为您提供前所未有的数据研究方式。通过动态链接的数据、图形和统计数据，JMP Pro能够在三维图形或动画中呈现实时调查结果，显示动态变化信息，从而产生极具价值的新见解，说明如何建模并详细介绍流程。</p>
+<h3>JMP® Pro特有的重要功能</h3>
+<p>JMP Pro包含JMP全部的功能，此外，JMP Pro还包括下列的额外分析功能。</p>
+<h4>预测建模和交叉验证</h4>
+<h5>神经网络建模</h5>
+<ul>
+<li>自动处理缺失数据</li>
+<li>用梯度提升方法自动选择隐藏单元的数目</li>
+<li>拟合单层和双层神经网络</li>
+<li>自动转换输入变量</li>
+<li>• 三个激活函数（双曲正切函数、线性函数、高斯函数）</li>
+<li>保存随机生成的交叉验证列</li>
+<li>保存变换的协变量</li>
+<li>支持验证列</li>
+</ul>
+<h5>递归分割建模</h5>
+<ul>
+<li>可选的方法：决策树、Bootstrap森林法（一种随机森林技术）、提升树、K最近邻、朴素贝叶斯</li>
+<li>“提升树”和“自助法森林”提供设置随机种子、隐藏多线程、使用调谐设计表、随机梯度下降</li>
+<li>支持验证列</li>
+<li>专为以下方法提供模型启动选项：Bootstrap森林法、提升树、K最近邻和朴素贝叶斯</li>
+</ul>
+<h5>模型比较</h5>
+<ul>
+<li>比较在JMP Pro中构建的模型</li>
+<li>刻画器</li>
+<li>拟合统计量（R2、误分类率、ROC曲线、AUC、提升曲线）</li>
+<li>模型平均</li>
+</ul>
+<h5>生成验证列</h5>
+<ul>
+<li>自动将数据分割为训练、验证和测试部分；创建验证列</li>
+<li>用于创建保留集的公式随机、固定随机、分层随机、分组随机、割点方法</li>
+<li>可通过在平台启动中单击验证列角色创建验证列（仅公式随机）</li>
+</ul>
+<h5>模型库</h5>
+<ul>
+<li>存储和管理“公式列”脚本</li>
+<li>发布可用于判别、拟合最小二乘法（7种命令）、拟合Logistic（名义型和有序型）、决策树、Bootstrap森林法、提升树、提升、K最近邻、朴素贝叶斯、神经、潜在分类分析、主成分（宽且零散）、广义回归、PLS、高斯过程的命令</li>
+<li>生成评分代码：SAS（DS2）、C、Python、JavaScript、SQL（针对不同目标提供可选语法选项）</li>
+<li>使用“模型比较”直接比较“公式库”中收集的模型</li>
+<li>刻画器</li>
+<li>显示脚本、复制脚本、复制公式、将公式复制为列变换、在数据表中运行脚本以生成公式列</li>
+<li>添加来自数据表列的公式</li>
+</ul>
+<h4>文本浏览器分析</h4>
+<ul>
+<li>潜在分类分析</li>
+<li>潜在语义分析（零散SVD）</li>
+<li>主题分析（旋转SVD）</li>
+<li>聚类项和文件</li>
+<li>SVD和主题散点图矩阵</li>
+<li>保存列：文件奇异向量和主题向量、用于关联的堆叠DTM</li>
+<li>保存公式：奇异向量、主题向量</li>
+<li>保存向量：检索词和主题</li>
+</ul>
+<h4>可靠性和生存模型</h4>
+<h5>可靠性框图（RBD）</h5>
+<ul>
+<li>构建复杂系统可靠性模型</li>
+<li>使用基本、串行、并行、节以及N中取K个节点构建系统</li>
+<li>使用设计库中的元素创建嵌套设计</li>
+</ul>
+<h5>可修复系统模拟（RSS）</h5>
+<ul>
+<li>基于离散事件模拟的引擎</li>
+<li>支持传统维护：修正维护和预防维护，类似于现有构建块</li>
+<li>在单个工作空间内的RBD旁，添加图解形式的维护安排</li>
+<li>各部件的事件和活动元素之间的图解联系可传达分组维护的含义和维护相关性</li>
+</ul>
+<h5>参数生存</h5>
+<ul>
+<li>支持通过与“拟合模型”的“广义回归”特质之间的桥接器进行变量选择</li>
+</ul>
+<h5>广义回归</h5>
+<ul>
+<li>处理删失数据，使您能够根据生存/可靠性数据选择变量</li>
+<li>支持Cox比例风险</li>
+<li>支持Weibull分布、对数正态、指数分布、Gamma分布、正态分布和ZI系列分布</li>
+</ul>
+<h4>拟合模型</h4>
+<h5>广义回归</h5>
+<ul>
+<li>正则化方法：岭、套索、自适应套索、双套索、弹性网格、自适应弹性网格</li>
+<li>向前选择和双阶段向前选择</li>
+<li>分位数回归</li>
+<li>处理删失数据，使您能够根据生存/可靠性数据选择变量</li>
+<li>Cox比例风险</li>
+<li>保存模拟公式以便在常规模拟平台中使用</li>
+<li>正态分布、对数正态分布、Weibull分布、Cauchy分布、指数分布、Gamma分布、Beta分布、二项分布、Beta二项分布、Poisson分布、负二项分布</li>
+<li>零泛滥负二项分布、Beta二项分布、Poisson分布、负二项分布、Gamma分布</li>
+<li>可选的验证方法：验证列、K重验证、保留验证、留一法验证、BIC验证、AICc验证、ERIC验证</li>
+</ul>
+<h5>逐步回归</h5>
+<ul>
+<li>支持验证列</li>
+</ul>
+<h5>Logistic回归（名义型和有序型）</h5>
+<ul>
+<li>支持验证列</li>
+</ul>
+<h5>标准最小二乘法</h5>
+<ul>
+<li>支持验证列</li>
+</ul>
+<h5>偏最小二乘（PLS）</h5>
+<ul>
+<li>拟合模型中的偏最小二乘特质支持连续或分类响应；连续或分类因子、交互和多项式项</li>
+<li>NIPALS式的缺失值补缺</li>
+<li>保存随机生成的交叉验证列</li>
+<li>提供“标准化X”选项，可在应用集中和缩放选项之前，集中和缩放多项式效应中的单独变量</li>
+<li>可选的验证方法：验证列、K重验证、保留验证、留一法验证</li>
+</ul>
+<h5>混合模型</h5>
+<ul>
+<li>指定固定、随机和重复效应</li>
+<li>关联变量组，设置对象和连续效应</li>
+<li>提供重复协方差结构选择</li>
+<li>方差变化图可充当可视化诊断方法，用于确定最适合的空间相关性结构（如果存在）</li>
+</ul>
+<h4>覆盖矩阵</h4>
+<ul>
+<li>设计和分析覆盖矩阵</li>
+<li>在创建设计后对其进行优化，实现进一步精简</li>
+<li>使用不被允许的组合过滤器来指定不可行的测试区域</li>
+<li>导入其他软件创建的覆盖矩阵；分析覆盖率并选择性地进行进一步优化</li>
+</ul>
+<h4>多元方法</h4>
+<h5>判别分析</h5>
+<ul>
+<li>支持验证列</li>
+</ul>
+<h4>专业模型</h4>
+<h5>高斯过程</h5>
+<ul>
+<li>能够通过快速GASP拟合包含数千行的模型</li>
+<li>为高斯过程模型添加分类变量</li>
+</ul>
+<h4>消费者调查</h4>
+<h5>提升模型</h5>
+<ul>
+<li>通过决策树方法识别最有可能对某项活动或优惠做出积极回应的消费者群体</li>
+<li>增量建模、真实-提升建模、净增量建模</li>
+<li>支持验证列</li>
+</ul>
+<h5>选择模型</h5>
+<ul>
+<li>支持可选的层次贝叶斯</li>
+<li>保存对象估计值和贝叶斯链</li>
+</ul>
+<h5>关联分析</h5>
+<ul>
+<li>支持购物篮分析</li>
+<li>分析“文本浏览器”平台生成的堆叠文件项矩阵</li>
+</ul>
+<h4>高级计算统计</h4>
+<h5>单因子分析</h5>
+<ul>
+<li>非参数精确检验</li>
+</ul>
+<h5>列联分析</h5>
+<ul>
+<li>变量关联性的精确测量</li>
+</ul>
+<h5>常规Bootstrapping</h5>
+<ul>
+<li>大多数报表中，可一键生成Bootstrap统计量</li>
+</ul>
+<h5>常规模拟功能</h5>
+<ul>
+<li>在大部分报表中支持一键模拟统计量</li>
+<li>可针对几乎所有数据进行功效计算</li>
+<li>支持参数Bootstrapping</li>
+<li>随机化检验</li>
+</ul>
+<h5>系统要求</h5>
+<p>JMP可运行于Microsoft Windows和Mac OS之上。支持32位和64位操作系统。</p>
+<ul>
+<li><a href="https://www.jmp.com/zh_cn/support/system-requirements.html">完整系统要求<br>
+</a></li>
+</ul>
+</div></div>
+      <script>document.body.onkeyup = function(e) {
+if (e.keyCode === 39) window.location.href = 'Julia 工程实践速记.html';
+if (e.keyCode === 37) window.location.href = '自然——Ant Design 设计价值观 · 语雀.html';
+}</script>
+    </body>
+    </html>
+  

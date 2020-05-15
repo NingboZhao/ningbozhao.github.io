@@ -1,5 +1,0 @@
-{
-  "body_html": "<p>我们有大量这样的数据：<span class=\"lake-fontsize-12\" style=\"color: #4F4F4F;\"><br /></span></p><table class=\"lake-table\" style=\"width: 293px;\"><colgroup><col width=\"102\"></col><col width=\"190\"></col></colgroup><tbody><tr><td><span>面积(m^2)</span></td><td>销售价钱（万元） </td></tr><tr><td><span>123</span></td><td>250 </td></tr><tr><td><span>150</span></td><td>320 </td></tr><tr><td><span>87</span></td><td>160 </td></tr><tr><td><span>102</span></td><td>220 </td></tr><tr><td><span>…</span></td><td>…</td></tr></tbody></table><p>希望通过这些训练数据，学习一个模型：输入一个面积时，自动预测出销售价格。</p><p>这样的模型有很多，其中最简单的就是线性回归。不过线性回归不一定是直线，只有变量x唯一时为之前，高维时是超平面。</p><p><br /></p><p><img alt=\"image.png\" title=\"image.png\" src=\"https://cdn.nlark.com/yuque/0/2019/png/85998/1558431269351-00c11672-e96e-4c68-bbb8-3cd4a20c376b.png#align=left&amp;display=inline&amp;height=362&amp;name=image.png&amp;originHeight=565&amp;originWidth=882&amp;size=176878&amp;status=done&amp;width=564\" style=\"max-width: 600px; width: 564px;\" /></p><p><br /></p><p>目标：图中线段距离（平方）的平均值，也就是最小化到分割面的距离和。</p><p><br /></p><p><br /></p>",
-  "slug": 1732183,
-  "title": "线性回归 (高维超平面)"
-}
