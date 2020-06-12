@@ -467,8 +467,8 @@ body {
   background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%3Cpath%20fill%3D%22%2319d78c%22%20d%3D%22M12%2C2A10%2C10%200%200%2C1%2022%2C12A10%2C10%200%200%2C1%2012%2C22A10%2C10%200%200%2C1%202%2C12A10%2C10%200%200%2C1%2012%2C2M12%2C4A8%2C8%200%200%2C0%204%2C12A8%2C8%200%200%2C0%2012%2C20A8%2C8%200%200%2C0%2020%2C12A8%2C8%200%200%2C0%2012%2C4M11%2C16.5L6.5%2C12L7.91%2C10.59L11%2C13.67L16.59%2C8.09L18%2C9.5L11%2C16.5Z%22%20%2F%3E%0A%3C%2Fsvg%3E");
 }
 .featured {
-  background: #f7f8fa;
-  padding: 80px 0px;
+  background: none;
+  padding: 3px 0px;
 }
 .featured h1 {
   color: #939ba9;
@@ -555,7 +555,7 @@ body {
   height: 72px;
   box-shadow: none;
   border-bottom: none;
-  background-color: none;
+  background-color: white;
   align-items: center;
   box-sizing: border-box;
   display: grid;

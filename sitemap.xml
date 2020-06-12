@@ -8,12 +8,6 @@
   </url>
   
   <url>
-    <loc>https://tutorials.drone.io/golang/</loc>
-    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tutorials.drone.io/publish-golang-docker-images-for-aarch64/</loc>
     <lastmod>2000-01-01T00:00:00+00:00</lastmod>
   </url>
@@ -61,6 +55,12 @@
   </url>
   
   <url>
+    <loc>https://tutorials.drone.io/tags/arm123/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://tutorials.drone.io/tags/arm64/</loc>
     <lastmod>2000-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -82,6 +82,17 @@
     <loc>https://tutorials.drone.io/tags/golang/</loc>
     <lastmod>2000-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tutorials.drone.io/tags/%E6%A0%87%E7%AD%BE/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tutorials.drone.io/publish-golang-docker-images-for-aarch64/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
