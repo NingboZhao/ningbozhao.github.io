@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Publishing Go Docker Images on ARM | Tutorials</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="copyright" content="">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="stylesheet" href="/index.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:400,500|Roboto+Mono|Roboto:400,500,700&display=swap">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-34247933-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  </head>
+  <body class="single">
+    <header class="header">
+    <div class="branding">
+        <a class="logo" href="/" aria-label="Home">
+            <img src="/logo.svg" />
+        </a>
+    </div>
+    <div class="search">
+        <input type="text" id="search-input" placeholder="Search all Tutorials ..." />
+    </div>
+    <nav>
+        
+    </nav>
+</header>
+
+    <main>
+        <nav>
+          <div class="sticky">
+              <h1>Contents</h1>
+              <nav id="TableOfContents">
+<ul>
+<li><a href="#setup-a-go-project">Setup a Go Project</a></li>
+<li><a href="#setup-a-dockerfile">Setup a Dockerfile</a>
+<ul>
+<li><a href="#from-instruction"><code>FROM</code> Instruction</a></li>
+<li><a href="#expose-instruction"><code>EXPOSE</code> Instruction</a></li>
+<li><a href="#add-instruction"><code>ADD</code> Instruction</a></li>
+<li><a href="#entrypoint-instruction"><code>ENTRYPOINT</code> Instruction</a></li>
+</ul></li>
+<li><a href="#build-and-publish-the-image">Build and Publish the Image</a></li>
+<li><a href="#continuous-integration">Continuous Integration</a>
+<ul>
+<li><a href="#activation">Activation</a></li>
+<li><a href="#configuration">Configuration</a>
+<ul>
+<li><a href="#the-platform-section">The <code>platform</code> Section</a></li>
+<li><a href="#the-name-attribute">The <code>name</code> Attribute</a></li>
+<li><a href="#the-image-attribute">The <code>image</code> Attribute</a></li>
+<li><a href="#the-commands-attribute">The <code>commands</code> Attribute</a></li>
+</ul></li>
+<li><a href="#execution">Execution</a></li>
+</ul></li>
+<li><a href="#continuous-delivery">Continuous Delivery</a>
+<ul>
+<li><a href="#secrets">Secrets</a></li>
+<li><a href="#settings">Settings</a>
+<ul>
+<li><a href="#the-image-attribute-1">The <code>image</code> Attribute</a></li>
+<li><a href="#the-username-attribute">The <code>username</code> Attribute</a></li>
+<li><a href="#the-password-attribute">The <code>password</code> Attribute</a></li>
+<li><a href="#the-repo-attribute">The <code>repo</code> Attribute</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+</nav>
+          </div>
+        </nav>
+        <article>
+            
+            <div class="image" style="background-image: url(/illustrations/docker_1024x512px.png);"></div>
+            
+            <header>
+                <h1>Publishing Go Docker Images on ARM<small>by @bradrydzewski</small></h1>
+            </header>
+            <section class="content">
+
+<p>This guide will walk you through the steps required to build and publish aarch64 Docker images for Go projects. This guide assumes you have a basic understanding of Go and Docker, and that you have Go and Docker installed.</p>
+
+<h1 id="setup-a-go-project">Setup a Go Project</h1>
+
+<p>First we setup a <code>go.mod</code> file for our project. The module file defines the project namespace and dependencies:</p>
+
+<pre><code>module github.com/octocat/hello-world
+</code></pre>
+
+<p>Next we create a simple Go program. For the purpose of this guide we create a simple http server that responds to an http request with <code>hello world</code>.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">package main
+
+import (
+    &#34;fmt&#34;
+    &#34;net/http&#34;
+)
+
+func main() {
+    http.HandleFunc(&#34;/&#34;, handler)
+    http.ListenAndServe(&#34;:8080&#34;, nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintln(w, &#34;hello world&#34;)
+}</code></pre></td></tr></table>
+</div>
+</div>
+
+<p>Use the go tool to compile our program to a standalone binary file, and then execute the binary to start the server on port 8080.</p>
+
+<pre><code>$ go build
+$ ./hello-world
+</code></pre>
+
+<p>Use cURL to verify the server is running and responding to requests:</p>
+
+<pre><code>$ curl http://localhost:8080
+hello world
+</code></pre>
+
+<h1 id="setup-a-dockerfile">Setup a Dockerfile</h1>
+
+<p>Next we are ready to build a Docker image using a Dockerfile. A Dockerfile is a text file that has a series of instuctions and commands for creating the image. We create the following Dockerfile:</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">FROM arm64v8/alpine
+EXPOSE 8080
+ADD hello-world /bin
+ENTRYPOINT [ &#34;/bin/hello-world&#34; ]</code></pre></td></tr></table>
+</div>
+</div>
+
+<h2 id="from-instruction"><code>FROM</code> Instruction</h2>
+
+<p>The <code>FROM</code> instruction set the base image for subsequent instructions. This sets an aarch64 Alpine Linux image as the base.</p>
+
+<div class="alert info" role="alert">
+Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. The Alpine image is only 5MB in size, making it a popular image base.
+</div>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="hl"><span class="lnt">1
+</span></span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="hl">FROM arm64v8/alpine
+</span>EXPOSE 8080
+ADD hello-world /bin
+ENTRYPOINT [ &#34;/bin/hello-world&#34; ]</code></pre></td></tr></table>
+</div>
+</div>
+
+<h2 id="expose-instruction"><code>EXPOSE</code> Instruction</h2>
+
+<p>The <code>EXPOSE</code> instruction informs Docker that the container listens on the specific port at runtime. This exposes port 8080.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="hl"><span class="lnt">2
+</span></span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">FROM arm64v8/alpine
+<span class="hl">EXPOSE 8080
+</span>ADD hello-world /bin
+ENTRYPOINT [ &#34;/bin/hello-world&#34; ]</code></pre></td></tr></table>
+</div>
+</div>
+
+<h2 id="add-instruction"><code>ADD</code> Instruction</h2>
+
+<p>The <code>ADD</code> instruction copies the binary to the target directory in the image. This adds the <code>hello-world</code> binary to the image.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="hl"><span class="lnt">3
+</span></span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">FROM arm64v8/alpine
+EXPOSE 8080
+<span class="hl">ADD hello-world /bin
+</span>ENTRYPOINT [ &#34;/bin/hello-world&#34; ]</code></pre></td></tr></table>
+</div>
+</div>
+
+<h2 id="entrypoint-instruction"><code>ENTRYPOINT</code> Instruction</h2>
+
+<p>The <code>ENTRYPOINT</code> instruction configures the default command that is executed when the container starts. This is configured to execute the <code>hello-world</code> binary.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="hl"><span class="lnt">4
+</span></span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">FROM arm64v8/alpine
+EXPOSE 8080
+ADD hello-world /bin
+<span class="hl">ENTRYPOINT [ &#34;/bin/hello-world&#34; ]</span></code></pre></td></tr></table>
+</div>
+</div>
+
+<h1 id="build-and-publish-the-image">Build and Publish the Image</h1>
+
+<p>The next step is to build our Docker image. But first we need to re-compile our binary file for the target operating system and architecture. If you are compiling the program on macOS or Windows, or any amd64 machine, it will not execute inside an aarch64 Linux container environment.</p>
+
+<p>Build the executable for the target operating system:</p>
+
+<pre><code>$ CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build
+</code></pre>
+
+<p>Build the Docker image:</p>
+
+<pre><code>$ docker build -t hello-world .
+
+Sending build context to Docker daemon  7.342MB
+Step 1/4 : FROM arm64v8/alpine
+latest: Pulling from library/alpine
+9d48c3bd43c5: Pull complete 
+Digest: sha256:72c42ed48c3a
+Status: Downloaded newer image for alpine:latest
+ ---&gt; 961769676411
+Step 2/4 : EXPOSE 8080
+ ---&gt; Running in 2f236d12e89b
+Removing intermediate container 2f236d12e89b
+ ---&gt; d090ee077728
+Step 3/4 : ADD hello-world /bin
+ ---&gt; bc936808d504
+Step 4/4 : ENTRYPOINT [ &quot;/bin/hello-world&quot; ]
+ ---&gt; Running in 3abd9fbc427e
+Removing intermediate container 3abd9fbc427e
+ ---&gt; 37fb6bd7aafe
+Successfully built 37fb6bd7aafe
+Successfully tagged hello-world:latest
+</code></pre>
+
+<p>Create and run a Docker container using our image. <em>Note that we expose port 8080 inside the container and map to port 8080 on the host</em>.</p>
+
+<pre><code>$ docker run -p 8080:8080 hello-world
+</code></pre>
+
+<div class="alert info" role="alert">
+Docker Desktop uses qemu-static to run containers for different Linux architectures such as arm, mips, ppc64le and s390x.
+</div>
+
+<h1 id="continuous-integration">Continuous Integration</h1>
+
+<p>Once our project is ready and is pushed to GitHub we can automate the build and test process using continuous integration.</p>
+
+<p>In this section we configure <a href="https://drone.io">Drone</a>, an Open Source continuous integration system, to automatically build and test our code every time we push to GitHub. You can install Drone on your own servers, or you can use the free Cloud offering.</p>
+
+<h2 id="activation">Activation</h2>
+
+<p>Fist, login into Drone and activate your repository:</p>
+
+<p><img src="/screenshots/drone-repo-activate.png" alt="Activate Repository" /></p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Next, define a Continuous Integration Pipeline for your project. Drone looks for special <code>.drone.yml</code> file within repositories for the Pipeline definition:</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">kind: pipeline
+type: docker
+name: build
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: test
+  image: golang:1.12
+  environment:
+    CGO_ENABLED: &#34;0&#34;
+  commands:
+  - go test ./...
+  - go build</code></pre></td></tr></table>
+</div>
+</div>
+
+<p>In the above example we define our Pipeline steps as a series of shell commands executed inside Docker containers.</p>
+
+<h3 id="the-platform-section">The <code>platform</code> Section</h3>
+
+<p>Defines the target operating system and environment.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="hl"><span class="lnt">5
+</span></span><span class="hl"><span class="lnt">6
+</span></span><span class="hl"><span class="lnt">7
+</span></span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">kind: pipeline
+type: docker
+name: build
+
+<span class="hl">platform:
+</span><span class="hl">  os: linux
+</span><span class="hl">  arch: arm64</span></code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-name-attribute">The <code>name</code> Attribute</h3>
+
+<p>Defines the name of the Pipeline step.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">9
+</span><span class="hl"><span class="lnt">10
+</span></span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">steps:
+<span class="hl">- name: test
+</span>  image: golang:1.12
+  environment:
+    CGO_ENABLED: &#34;0&#34;
+  commands:
+  - go test -v ./...
+  - go build</code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-image-attribute">The <code>image</code> Attribute</h3>
+
+<p>Defines the Docker image in which Pipeline commands are executed.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">9
+</span><span class="lnt">10
+</span><span class="hl"><span class="lnt">11
+</span></span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">steps:
+- name: test
+<span class="hl">  image: golang:1.12
+</span>  environment:
+    CGO_ENABLED: &#34;0&#34;
+  commands:
+  - go test -v ./...
+  - go build</code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-commands-attribute">The <code>commands</code> Attribute</h3>
+
+<p>Defines the Pipeline commands executed inside the Docker container.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="hl"><span class="lnt">16
+</span></span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">steps:
+- name: test
+  image: golang:1.12
+  environment:
+    CGO_ENABLED: &#34;0&#34;
+  commands:
+<span class="hl">  - go test -v ./...
+</span><span class="hl">  - go build</span></code></pre></td></tr></table>
+</div>
+</div>
+
+<h2 id="execution">Execution</h2>
+
+<p>The Pipeline will execute every time we push code to our repository. We can login to Drone and inspect the Pipeline results:</p>
+
+<p><img src="/screenshots/drone-build.png" alt="Activate Repository" /></p>
+
+<h1 id="continuous-delivery">Continuous Delivery</h1>
+
+<p>The final step is to automatically build and publish a Docker image to DockerHub. In order to publish and image to DockerHub we need to provide our credentials.</p>
+
+<h2 id="secrets">Secrets</h2>
+
+<p>For security reasons we do not want to store our credentials in our yaml. Instead you can securely store your secrets in the Drone database, adding your docker username and password via the repository settings screen.</p>
+
+<p><img src="/screenshots/drone-secrets.png" alt="Manage Secret" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Drone has a robust plugin system, including a plugin to build and publish images. Add a new step to the Docker Pipeline and configure the Docker plugin.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">- name: publish
+  image: plugins/docker
+  settings:
+    repo: hello-world
+    tags: latest
+    username:
+      from_secret: username
+    password:
+      from_secret: password</code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-image-attribute-1">The <code>image</code> Attribute</h3>
+
+<p>Defines the image used to build and publish the Docker image.</p>
+
+<div class="alert info" role="alert">
+Drone plugins are Docker images that perform pre-defined tasks. Choose from hundreds of community plugins or create your own.
+</div>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">17
+</span><span class="hl"><span class="lnt">18
+</span></span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">- name: publish
+<span class="hl">  image: plugins/docker
+</span>  settings:
+    repo: hello-world
+    tags: latest
+    username:
+      from_secret: username
+    password:
+      from_secret: password</code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-username-attribute">The <code>username</code> Attribute</h3>
+
+<p>Provides the username used to authenticate with the Docker registry, source from the named secret.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="hl"><span class="lnt">22
+</span></span><span class="hl"><span class="lnt">23
+</span></span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">- name: publish
+  image: plugins/docker
+  settings:
+    repo: hello-world
+    tags: latest
+<span class="hl">    username:
+</span><span class="hl">      from_secret: username
+</span>    password:
+      from_secret: password</code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-password-attribute">The <code>password</code> Attribute</h3>
+
+<p>Provides the password used to authenticate with the Docker registry, sourced from the named secret.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="hl"><span class="lnt">24
+</span></span><span class="hl"><span class="lnt">25
+</span></span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">- name: publish
+  image: plugins/docker
+  settings:
+    repo: hello-world
+    tags: latest
+    username:
+      from_secret: username
+<span class="hl">    password:
+</span><span class="hl">      from_secret: password</span></code></pre></td></tr></table>
+</div>
+</div>
+
+<h3 id="the-repo-attribute">The <code>repo</code> Attribute</h3>
+
+<p>Provides the Docker repository name.</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="hl"><span class="lnt">20
+</span></span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">- name: publish
+  image: plugins/docker
+  settings:
+<span class="hl">    repo: hello-world
+</span>    tags: latest
+    username:
+      from_secret: username
+    password:
+      from_secret: password</code></pre></td></tr></table>
+</div>
+</div>
+
+<h1 id="next-steps">Next Steps</h1>
+
+<p>Now that you have Drone automatically building and publishing Docker images you can add more advanced Pipeline steps. For example, you can automatically update your Kubernetes pods to use your new images, or you can send Slack notifications to your team every time your Pipeline completes.</p>
+</section>
+        </article>
+        <aside>
+            <div class="sticky">
+                
+                
+                <h1>Related</h1>
+                <ul>
+                    
+                    <li>
+                        <a href="/publish-golang-docker-images-for-aarch64/">
+                          <span class="name">Publishing Go Docker Images on ARM</span>
+                          <span class="author">by @bradrydzewski</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/publish-golang-docker-images-for-aarch64/">
+                          <span class="name">Publishing Go Docker Images on ARM</span>
+                          <span class="author">by @bradrydzewski</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/publish-golang-docker-images-for-aarch64/">
+                          <span class="name">Publishing Go Docker Images on ARM</span>
+                          <span class="author">by @bradrydzewski</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </aside>
+    </main>
+    <script src="/autocomplete.js"></script>
+<script src="/fuse.js"></script>
+
+<style>
+.algolia-autocomplete {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 40px;
+    max-height: 40px;
+}
+
+.algolia-autocomplete input:focus {
+    outline: none;
+    background: #FFFFFF !important;
+    color: #1e375a;
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    background: #354b6b !important;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    font-size: 15px;
+    color: #aeb7c4;
+    min-height: 40px;
+    max-height: 40px;
+    padding: 0px 20px;
+    display: block !important;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #aeb7c4;
+  box-sizing: border-box;
+}
+
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  box-sizing: border-box;
+  margin-top: 10px;
+  border-radius: 3px;
+  box-shadow: 0 6px 18px 9px rgba(116, 129, 141, 0.2);
+  padding: 20px 0px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 20px 20px;
+  box-sizing: border-box;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    color: #2364d2;
+    background: #f7f8fa;
+    box-sizing: border-box;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+  box-sizing: border-box;
+}
+
+::placeholder {
+    color: #aeb7c4;
+}
+:focus::placeholder {
+    color: #939ba9;
+}
+</style>
+<script>
+
+var options = {
+  shouldSort: true,
+  tokenize: false,
+  threshold: 0.6,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    "title",
+    "tags",
+    "content"
+  ]
+};
+
+var index;
+autocomplete('#search-input', {
+    hint: true,
+    debounce: 250,
+    cache: true,
+    debug: window.location.hostname === "localhost",
+}, [
+    {
+        displayKey: function(suggestion) {
+            return suggestion.title
+        },
+        source: function(query, callback) {
+            if (!index) {
+                fetch("/index.json")
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(items) {
+                    index = new Fuse(items, options);
+                    var results = index.search(query);
+                    callback(results && results.slice(0, 5));
+                });
+            } else {
+                var results = index.search(query);
+                callback(results && results.slice(0, 5));
+            }
+        }
+    }]).on('autocomplete:selected', function(event, suggestion, dataset) {
+        window.location.href = suggestion.permalink;
+    });
+</script>
+  </body>
+</html>

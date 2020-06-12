@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arm64 on 企鹅商业报告中心</title>
+    <link>https://tutorials.drone.io/tags/arm64/</link>
+    <description>Recent content in arm64 on 企鹅商业报告中心</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 01 Jan 2000 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tutorials.drone.io/tags/arm64/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating Multi-architecture GitHub Releases for Go Binaries</title>
+      <link>https://tutorials.drone.io/create-multi-arch-github-release-go-binary/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorials.drone.io/create-multi-arch-github-release-go-binary/</guid>
+      <description>This guide will walk you through the steps required to build and publish multi-architecture Go binaries and package and release them to Github. We will demonstrate how this can be done manually through the GitHub user interface, and then we’ll show you how to automate the release process.
+This guide assumes you have a basic understanding of Go and Docker, and that you have Go and Docker installed. In addition, this assumes that you know how to create and interact with a Github repository.</description>
+    </item>
+    
+  </channel>
+</rss>
