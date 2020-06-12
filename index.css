@@ -555,7 +555,7 @@ body {
   height: 72px;
   box-shadow: none;
   border-bottom: none;
-  background-color: red;
+  background-color: none;
   align-items: center;
   box-sizing: border-box;
   display: grid;
